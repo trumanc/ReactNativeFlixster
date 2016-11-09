@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
 })
 class Movies extends React.Component {
   static propTypes = {
+    apiUrl: React.PropTypes.string,
     onSelectMovie: React.PropTypes.func.isRequired,
   }
   state = {
@@ -35,7 +36,7 @@ class Movies extends React.Component {
 
   fetchMovies() {
     this.setState({ isLoading: true })
-    api.fetchMovies()
+    api.fetchMovies(this.props.apiUrl)
       .then(results => this.updateRows(results))
       .catch(error => {
         this.setState({ isLoading: false })

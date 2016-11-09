@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  BackAndroid,
   Navigator,
   Text,
   TouchableOpacity,
@@ -14,7 +13,7 @@ const navBarStyle = {
   backgroundColor: 'rgb(258,117,98)'
 }
 
-const NavMovies = ({ onNavChange }) => (
+const NavMovies = ({ onNavChange, apiUrl }) => (
   <Navigator
     style={{ paddingTop: navBarHeight }}
     initialRoute={{ key: 'movies' }}
@@ -22,7 +21,10 @@ const NavMovies = ({ onNavChange }) => (
       onNavChange(navigator)
       navRef = navigator
       if (route.key == 'movies') {
-        return <Movies onSelectMovie={ mov => navigator.push({ key: 'details', movie: mov})}/>
+        return <Movies
+                 apiUrl={apiUrl}
+                 onSelectMovie={ mov => navigator.push({ key: 'details', movie: mov})}
+               />
       }
       return (
         <View style={{ flex: 1, backgroundColor: 'rgb(230,230,230)'}} >

@@ -6,6 +6,10 @@ import {
 } from 'react-native'
 import NavMovies from './NavMovies'
 import ScrollableTabView, { DefaultTabBar }  from 'react-native-scrollable-tab-view'
+import {
+  NOW_PLAYING_URL,
+  TOP_RATED_URL,
+} from './api'
 
 
 let navRef = null
@@ -39,8 +43,8 @@ class TabApp extends React.Component {
         onChangeTab={({ i }) => (this.currentTab = i)}
         renderTabBar={() => <DefaultTabBar />}
       >
-        <NavMovies tabLabel="Now Playing" onNavChange={nav => (this.navRef = nav)}/>
-        <Text tabLabel="Top Rated">Top rated</Text>
+        <NavMovies tabLabel="Now Playing" onNavChange={nav => (this.navRef = nav)} apiUrl={NOW_PLAYING_URL}/>
+        <NavMovies tabLabel="Top Rated" onNavChange={nav => (this.navRef = nav)} apiUrl={TOP_RATED_URL}/>
       </ScrollableTabView>
     )
   }
