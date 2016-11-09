@@ -14,7 +14,7 @@ The following **required** functionality is completed:
 - [ ] User can change the orientation of the phone to switch from landscape and portrait customized views.
 - [X] User sees loading state while waiting for the API.
 - [ ] User sees an error message when there is a network error.
-- [ ] User can pull to refresh the movie list.
+- [X] User can pull to refresh the movie list.
 - [X] Add a cross-platform tab bar for **Now Playing** and **Top Rated** movies.
 
 The following **optional** features are implemented:

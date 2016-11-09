@@ -3,6 +3,7 @@ import MovieCell from './MovieCell'
 import {
   ActivityIndicator,
   ListView,
+  RefreshControl,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -25,6 +26,7 @@ class Movies extends React.Component {
     onSelectMovie: React.PropTypes.func.isRequired,
   }
   state = {
+    refreshing: false,
     isLoading: false,
     isEmpty: false,
     dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2})
@@ -36,14 +38,19 @@ class Movies extends React.Component {
 
   fetchMovies() {
     this.setState({ isLoading: true })
-    api.fetchMovies(this.props.apiUrl)
+    return api.fetchMovies(this.props.apiUrl)
       .then(results => this.updateRows(results))
       .catch(error => {
         this.setState({ isLoading: false })
         console.error(error)
       })
   }
-
+  _onRefresh() {
+    this.setState({ refreshing: true })
+    this.fetchMovies().then(() => {
+      this.setState({refreshing: false})
+    })
+  }
   updateRows(rows) {
     this.setState({
       isLoading: false,
@@ -73,6 +80,12 @@ class Movies extends React.Component {
             <MovieCell movie={row}/>
           </TouchableOpacity>
         )}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
       />
     )
   }
