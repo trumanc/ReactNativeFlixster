@@ -8,14 +8,14 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User can view a list of movies currently playing in theaters. Poster images load asynchronously.
-- [ ] User can view movie details by tapping on a cell.
-- [ ] User can use hardware back button on Android to navigate.
+- [X] User can view a list of movies currently playing in theaters. Poster images load asynchronously.
+- [X] User can view movie details by tapping on a cell.
+- [X] User can use hardware back button on Android to navigate.
 - [ ] User can change the orientation of the phone to switch from landscape and portrait customized views.
-- [ ] User sees loading state while waiting for the API.
+- [X] User sees loading state while waiting for the API.
 - [ ] User sees an error message when there is a network error.
 - [ ] User can pull to refresh the movie list.
-- [ ] Add a cross-platform tab bar for **Now Playing** and **Top Rated** movies.
+- [X] Add a cross-platform tab bar for **Now Playing** and **Top Rated** movies.
 
 The following **optional** features are implemented:
 
