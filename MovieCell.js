@@ -37,8 +37,8 @@ const MovieCell = ({ movie }) => (
   <View style={styles.container}>
     <ProgressiveImage
       style={styles.poster}
-      sourceHigh={{uri: api.getPosterUrlHigh(movie.poster_path)}}
-      sourceLow={{uri: api.getPosterUrlLow(movie.poster_path)}}
+      sourceHigh={{uri: api.getImageUrlHigh(movie.poster_path)}}
+      sourceLow={{uri: api.getImageUrlLow(movie.poster_path)}}
       resizeMode="contain"
       resizeMethod="resize"
     />

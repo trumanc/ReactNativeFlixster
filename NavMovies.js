@@ -6,8 +6,9 @@ import {
   View,
 } from 'react-native'
 import Movies from './Movies'
+import MovieDetails from './MovieDetails'
 
-const navBarHeight = 60
+const navBarHeight = 40
 const navBarStyle = {
   height: navBarHeight,
   backgroundColor: 'rgb(258,117,98)'
@@ -26,12 +27,7 @@ const NavMovies = ({ onNavChange, apiUrl }) => (
                  onSelectMovie={ mov => navigator.push({ key: 'details', movie: mov})}
                />
       }
-      return (
-        <View style={{ flex: 1, backgroundColor: 'rgb(230,230,230)'}} >
-          <Text>I am a details screen</Text>
-          <Text>{route.movie.title}</Text>
-        </View>
-      )
+      return <MovieDetails movie={route.movie}/>
     }}
     configureScene={() => Navigator.SceneConfigs.FloatFromBottom}
     navigationBar={
@@ -47,9 +43,6 @@ const NavMovies = ({ onNavChange, apiUrl }) => (
           },
           RightButton: () => {},
           Title: (route) => {
-            if (route.key == 'movies') {
-              return <Text>Now Playing</Text>
-            }
             return null
           },
         }}
