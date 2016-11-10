@@ -67,7 +67,6 @@ class Movies extends React.Component {
   render() {
     return (
       <View style={[styles.container, styles.centering]} >
-        {this.state.networkErrorOccured ? <NetworkErrorBanner /> : <View />}
         {this.state.isEmpty ?
           (this.state.isLoading ?
             <ActivityIndicator style={styles.centering}/> :
@@ -91,6 +90,7 @@ class Movies extends React.Component {
             />
         </View>)
         }
+        {this.state.networkErrorOccured ? <NetworkErrorBanner /> : <View />}
       </View>
     )
   }

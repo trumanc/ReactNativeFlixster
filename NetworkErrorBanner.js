@@ -8,7 +8,6 @@ import {
 
 const styles = StyleSheet.create({
   topBanner: {
-    zIndex: 100,  // Bug here on android :(
     position: 'absolute',
     left: 0,
     right: 0,
