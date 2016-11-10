@@ -2,7 +2,7 @@
 
 **Flixster** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **X** hours spent in total
+Time spent: **20** hours spent in total
 
 ## User Stories
 
@@ -38,7 +38,11 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+On Android:
+<img src='http://i.imgur.com/26L9AAQ.gif' title='Android Video Walkthrough' width='' alt='Android Video Walkthrough' />
+
+On iOS:
+<img src='http://i.imgur.com/6pfryhT.gif' title='iOS Video Walkthrough' width='' alt='iOS Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
