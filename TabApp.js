@@ -38,7 +38,7 @@ class TabApp extends React.Component {
   render() {
     return(
       <ScrollableTabView
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 20, flex: 1}}
         locked
         onChangeTab={({ i }) => (this.currentTab = i)}
         renderTabBar={() => <DefaultTabBar />}

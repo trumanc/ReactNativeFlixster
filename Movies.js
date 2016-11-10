@@ -1,5 +1,6 @@
 import React from 'react'
 import MovieCell from './MovieCell'
+import Chance from 'chance'
 import {
   ActivityIndicator,
   ListView,
@@ -9,15 +10,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import NetworkErrorBanner from './NetworkErrorBanner'
 import * as api from './api'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  absolute: {
+    position: 'absolute',
+  },
   centering: {
     justifyContent: 'center',
-    alignItems: 'center',
   },
 })
 class Movies extends React.Component {
@@ -28,7 +32,8 @@ class Movies extends React.Component {
   state = {
     refreshing: false,
     isLoading: false,
-    isEmpty: false,
+    isEmpty: true,
+    networkErrorOccured: false,
     dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2})
   }
 
@@ -37,12 +42,12 @@ class Movies extends React.Component {
   }
 
   fetchMovies() {
-    this.setState({ isLoading: true })
-    return api.fetchMovies(this.props.apiUrl)
+    this.setState({ isLoading: true, networkErrorOccured: false})
+    let url = new Chance(Math.random).bool() ? this.props.apiUrl : "https://some.fake.address.for.failure"
+    return api.fetchMovies(url)
       .then(results => this.updateRows(results))
       .catch(error => {
-        this.setState({ isLoading: false })
-        console.error(error)
+        this.setState({ isLoading: false, networkErrorOccured: true })
       })
   }
   _onRefresh() {
@@ -60,33 +65,33 @@ class Movies extends React.Component {
   }
 
   render() {
-    if (this.state.isLoading) {
-      return (
-        <View style={[styles.container, styles.centering]}>
-          <ActivityIndicator />
-        </View>
-      )
-    } else if (this.state.isEmpty) {
-        <View style={[styles.container, styles.centering]}>
-          <Text>No results found.</Text>
-        </View>
-    }
     return (
-      <ListView
-        style={styles.container}
-        dataSource={this.state.dataSource}
-        renderRow={row => (
-          <TouchableOpacity onPress={() => this.props.onSelectMovie(row)}>
-            <MovieCell movie={row}/>
-          </TouchableOpacity>
-        )}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh.bind(this)}
-          />
+      <View style={[styles.container, styles.centering]} >
+        {this.state.networkErrorOccured ? <NetworkErrorBanner /> : <View />}
+        {this.state.isEmpty ?
+          (this.state.isLoading ?
+            <ActivityIndicator style={styles.centering}/> :
+            <Text style={{alignSelf: 'center'}}>No results found.</Text>
+          ) :
+          (<View style={styles.container} >
+            <ListView
+              style={styles.container}
+              dataSource={this.state.dataSource}
+              renderRow={row => (
+                <TouchableOpacity onPress={() => this.props.onSelectMovie(row)}>
+                  <MovieCell movie={row}/>
+                </TouchableOpacity>
+              )}
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this._onRefresh.bind(this)}
+                />
+              }
+            />
+        </View>)
         }
-      />
+      </View>
     )
   }
 }
