@@ -43,7 +43,7 @@ class Movies extends React.Component {
 
   fetchMovies() {
     this.setState({ isLoading: true, networkErrorOccured: false})
-    let url = new Chance(Math.random).bool() ? this.props.apiUrl : "https://some.fake.address.for.failure"
+    let url = this.props.apiUrl //new Chance(Math.random).bool() ? this.props.apiUrl : "https://some.fake.address.for.failure"
     return api.fetchMovies(url)
       .then(results => this.updateRows(results))
       .catch(error => {

@@ -14,13 +14,17 @@ const styles = StyleSheet.create({
     top: 0,
     borderWidth: 1,
     borderColor: 'rgb(1,1,1)',
-    backgroundColor: 'rgb(100, 100, 200)',
+    backgroundColor: 'rgb(50, 50, 50)',
+    opacity: 0.95,
     alignItems: 'center',
   },
+  lightText: {
+    color: 'rgb(200,200,200)',
+  }
 })
 const NetworkErrorBanner = () => (
   <View style={styles.topBanner} >
-    <Text>There was a network error</Text>
+    <Text style={styles.lightText}>There was a network error</Text>
   </View>
 )
 export default NetworkErrorBanner
